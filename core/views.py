@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Editorial, Libro
 from .serializers import EditorialSerializer, LibroSerializer
 
@@ -9,3 +9,5 @@ class EditorialViewSet(viewsets.ModelViewSet):
 class LibroViewSet(viewsets.ModelViewSet):
     queryset = Libro.objects.all()
     serializer_class = LibroSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['titulo', 'genero']
